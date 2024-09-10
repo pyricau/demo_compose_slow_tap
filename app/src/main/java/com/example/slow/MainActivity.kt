@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
     setContentView(R.layout.activity_main)
 
     val viewCounter = findViewById<TextView>(R.id.view_button)
-    findViewById<View>(R.id.view_button).setOnClickListener {
+    viewCounter.setOnClickListener {
       viewTapCount++
       viewCounter.text = "View Tap Count: $viewTapCount"
       simulateHeavyMainThreadWorkflow()
