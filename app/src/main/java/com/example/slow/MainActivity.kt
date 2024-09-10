@@ -4,13 +4,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.activity.ComponentActivity
-import androidx.compose.foundation.LocalIndication
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation.Vertical
 import androidx.compose.foundation.gestures.scrollable
-import androidx.compose.foundation.hoverable
-import androidx.compose.foundation.indication
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.rememberScrollState
@@ -40,7 +35,7 @@ class MainActivity : ComponentActivity() {
     viewCounter.setOnClickListener {
       viewTapCount++
       viewCounter.text = "View Tap Count: $viewTapCount"
-      simulateHeavyMainThreadWorkflow()
+      simulateHeavyMainThreadWork()
     }
 
     findViewById<ComposeView>(R.id.compose_view).setContent {
@@ -56,13 +51,13 @@ class MainActivity : ComponentActivity() {
         ) {
           Button(onClick = {
             composeTapCount++
-            simulateHeavyMainThreadWorkflow()
+            simulateHeavyMainThreadWork()
           }) {
             Text("Compose Tap Count: $composeTapCount")
           }
           Button(onClick = waitAfterNextFrame {
             composeTapCount++
-            simulateHeavyMainThreadWorkflow()
+            simulateHeavyMainThreadWork()
           }) {
             Text("Better Compose Tap Count: $composeTapCount")
           }
@@ -71,7 +66,7 @@ class MainActivity : ComponentActivity() {
     }
   }
 
-  private fun simulateHeavyMainThreadWorkflow() {
+  private fun simulateHeavyMainThreadWork() {
     Thread.sleep(1000)
   }
 
